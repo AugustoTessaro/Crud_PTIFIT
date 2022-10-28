@@ -19,6 +19,21 @@
                     phone
                 </th>
                 <th>
+                    city
+                </th>
+                <th>
+                    neighborhood
+                </th>
+                <th>
+                    street
+                </th>
+                <th>
+                    number
+                </th>
+                <th>
+                    CEP
+                </th>
+                <th>
                     Editar
                 </th>
                 <th>
@@ -46,7 +61,25 @@
                     {{$aluno->phone}}
                 </th>
                 <th>
-                    <a href="{{route('alunos.edit', $aluno->id)}}">Editar</a>
+                    {{$aluno->endereco->city}}
+                </th>
+                <th>
+                    {{$aluno->endereco->neighborhood}}
+                </th>
+                <th>
+                    {{$aluno->endereco->street}}
+                </th>
+                <th>
+                    {{$aluno->endereco->number}}
+                </th>
+                <th>
+                    {{$aluno->endereco->CEP}}
+                </th>
+                <th>
+                    <form action="{{route('alunos.edit', $aluno->id)}}" method="GET">
+                        @csrf
+                        <button type="submit"> Editar </button>
+                    </form>
                 </th>
                 <th>
                     <form action="{{route('alunos.destroy', $aluno->id)}}" method="POST">
@@ -59,4 +92,7 @@
             @endforeach
         </tbody>
     </table>
+    <form action="{{route('alunos.create')}}" method= "GET">
+    <button> adicionar </button>
+    </form>
 </x-layout>

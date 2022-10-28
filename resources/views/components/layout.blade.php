@@ -7,6 +7,9 @@
     <title>{{$title}}</title>
 </head>
 <body>
-    {{$slot}}
+    {{$slot}}  
+    <form action="{{route('logout')}}" method= "GET">
+    <button> sair </button>
+    </form>
 </body>
 </html>
