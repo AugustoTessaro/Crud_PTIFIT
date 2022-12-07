@@ -21,7 +21,7 @@ class ProfessorController extends Controller
             abort(403);
         } 
 
-        return view('professor.index')
+        return view('professor.index_professor')
            ->with('alunos', $alunos);
     }
 
@@ -109,3 +109,5 @@ class ProfessorController extends Controller
             ->with('data', $data);
     }
 }
+
+
