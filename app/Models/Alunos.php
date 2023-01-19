@@ -12,6 +12,7 @@ class Alunos extends Model
     protected $fillable = [
         'name',
         'dateBirth',
+        'age',
         'CPF',
         'RG',
         'phone',

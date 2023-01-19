@@ -1,4 +1,4 @@
-<x-layout title="Listagem de Alunos">
+<x-layout title="Listagem de Alunos" >
 
     <table>
         <thead>

@@ -13,16 +13,18 @@ class ProfessorController extends Controller
 {
     public function index()
     {
-        $alunos = Alunos::all();        
+        $alunos = Alunos::all();  
+        $professores = Professor::all();         
 
         $user = auth()->user();
 
-        if($user->role != 'professor'){
-            abort(403);
-        } 
+         if($user->role != 'professor' && $user->role != 'admin'){
+           abort(403);
+         } 
 
         return view('professor.index_professor')
-           ->with('alunos', $alunos);
+             ->with('professores', $professores)
+             ->with('alunos', $alunos);
     }
 
     public function create(){

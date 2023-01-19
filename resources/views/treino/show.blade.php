@@ -21,16 +21,16 @@
         <tbody>            
             <tr>
                 <th>
-                    {{$data['treino']->init_date}}
+                    {{$treino->init_date}}
                 </th>
                 <th>
-                    {{$data['treino']->end_date}}
+                    {{$treino->end_date}}
                 </th>
                 <th>
-                    {{$data['treino']->name}}
+                    {{$treino->name}}
                 </th>
                 <th>
-                    {{$data['treino']->description}}
+                    {{$treino->description}}
                 </th>               
             </tr>            
         </tbody>
@@ -61,7 +61,7 @@
 
         </thead>
         <tbody>     
-            @foreach ($data['exercicios'] as $exercicio)       
+            @foreach ($dexercicios as $exercicio)       
             <tr>    
                 <th>
                     {{$exercicio->tipo_exercicio->name}}

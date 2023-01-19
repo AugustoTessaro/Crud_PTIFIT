@@ -1,4 +1,4 @@
-<x-layout title="Listagem de Alunos">
+<x-layout title="Listagem de Alunos" :role="$user->role">
 
     <table>
         <thead>
@@ -45,49 +45,49 @@
         <tbody>
             @foreach ($alunos as $aluno)
             <tr>
-                <th>
+                <td>
                     {{$aluno->name}}
-                </th>
-                <th>
-                    {{$aluno->dateBirth}}
-                </th>
-                <th>
+                </td>
+                <td>
+                    {{$aluno->age}}
+                </td>
+                <td>
                     {{$aluno->CPF}}
-                </th>
-                <th>
+                </td>
+                <td>
                     {{$aluno->RG}}
-                </th>
-                <th>
+                </td>
+                <td>
                     {{$aluno->phone}}
-                </th>
-                <th>
+                </td>
+                <td>
                     {{$aluno->endereco->city}}
-                </th>
-                <th>
+                </td>
+                <td>
                     {{$aluno->endereco->neighborhood}}
-                </th>
-                <th>
+                </td>
+                <td>
                     {{$aluno->endereco->street}}
-                </th>
-                <th>
+                </td>
+                <td>
                     {{$aluno->endereco->number}}
-                </th>
-                <th>
+                </td>
+                <td>
                     {{$aluno->endereco->CEP}}
-                </th>
-                <th>
+                </td>
+                <td>
                     <form action="{{route('alunos.edit', $aluno->id)}}" method="GET">
                         @csrf
                         <button type="submit"> Editar </button>
                     </form>
-                </th>
-                <th>
+                </td>
+                <td>
                     <form action="{{route('alunos.destroy', $aluno->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit"> Excluir </button>
                     </form>
-                </th>
+                </td>
             </tr>
             @endforeach
         </tbody>

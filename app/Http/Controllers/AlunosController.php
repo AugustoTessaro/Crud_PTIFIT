@@ -6,17 +6,19 @@ use App\Models\Alunos;
 use App\Models\Endereco;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AlunosController extends Controller
 {
     public function index()
     {
-        $alunos = Alunos::all();        
-
-        $user = auth()->user();
-
+        $alunos = Alunos::all();
+        $logged_user = Auth::user();      
+        
         return view('alunos.index')
-           ->with('alunos', $alunos);
+           ->with('alunos', $alunos)
+           ->with('user', $logged_user);
     }
 
     public function create(){
@@ -48,6 +50,7 @@ class AlunosController extends Controller
         $aluno->phone = $request->phone;                
         $aluno->id_endereco = $endereco->id;        
         $aluno->id_user = $user->id;
+        $aluno->age = Carbon::parse($request->dateBirth)->age;
         $aluno->save();
 
         auth()->login($user);

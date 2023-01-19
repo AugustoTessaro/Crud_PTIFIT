@@ -23,13 +23,24 @@ use App\Models\Equipamento;
 */
 
 Route::get('/', function () {
-    return redirect('/alunos');
+
+    // redirect('/login');
+
+    // $user = auth()->user();
+
+    //  if($user->role =! 'professor' &&   $user->role != 'admin'){
+    //     return redirect('/alunos');
+    // }
+    // return redirect('/professor');
+
+    return redirect('alunos');
 });
 
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
 
 Route::group(['middleware' => ['auth']], function() {
+
     Route::resource('/alunos', AlunosController::class);
     Route::get('/logout', [LogoutController::class, 'perform'])->name('logout');  
 

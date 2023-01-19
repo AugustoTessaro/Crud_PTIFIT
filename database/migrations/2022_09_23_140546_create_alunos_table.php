@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');            
             $table->date('dateBirth');
+            $table->integer('age');
             $table->string('CPF');
             $table->string('RG');
             $table->string('phone');
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('alunos');
     }
 };

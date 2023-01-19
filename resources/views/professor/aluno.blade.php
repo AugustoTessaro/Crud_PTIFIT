@@ -1,5 +1,4 @@
 <x-layout title="Listagem de Alunos">
-
     <table>
         <thead>
             <tr>
@@ -45,40 +44,40 @@
         <tbody>            
             <tr>
                 <th>
-                    {{$data['aluno']->name}}
+                    {{$aluno->name}}
                 </th>
                 <th>
-                    {{$data['aluno']->dateBirth}}
+                    {{$aluno->age}}
                 </th>
                 <th>
-                    {{$data['aluno']->CPF}}
+                    {{$aluno->CPF}}
                 </th>
                 <th>
-                    {{$data['aluno']->RG}}
+                    {{$aluno->RG}}
                 </th>
                 <th>
-                    {{$data['aluno']->phone}}
+                    {{$aluno->phone}}
                 </th>
                 <th>
-                    {{$data['aluno']->endereco->city}}
+                    {{$aluno->endereco->city}}
                 </th>
                 <th>
-                    {{$data['aluno']->endereco->neighborhood}}
+                    {{$aluno->endereco->neighborhood}}
                 </th>
                 <th>
-                    {{$data['aluno']->endereco->street}}
+                    {{$aluno->endereco->street}}
                 </th>
                 <th>
-                    {{$data['aluno']->endereco->number}}
+                    {{$aluno->endereco->number}}
                 </th>
                 <th>
-                    {{$data['aluno']->endereco->CEP}}
+                    {{$aluno->endereco->CEP}}
                 </th>
                 <th>
-                    <a href="{{route('alunos.edit', $data['aluno']->id)}}">Editar</a>
+                    <a href="{{route('alunos.edit', $aluno->id)}}">Editar</a>
                 </th>
                 <th>
-                    <form action="{{route('alunos.destroy', $data['aluno']->id)}}" method="POST">
+                    <form action="{{route('alunos.destroy', $aluno->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit"> Excluir </button>

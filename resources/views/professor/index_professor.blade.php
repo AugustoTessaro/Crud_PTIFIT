@@ -1,4 +1,4 @@
-<x-layout title="Listagem de professores">
+<x-layout title="Listagem de professores" role="admin">
 
     <table>
         <thead>
@@ -45,34 +45,36 @@
         <tbody>
             @foreach ($professores as $professor)
             <tr>
-                <th>
+                <td>
                     {{$professor->name}}
-                </th>
-                <th>
-                    {{$professor->dateBirth}}
-                </th>
-                <th>
+                </td>
+                <td>
+                    {{$professor->age}}
+                </td>
+                <td>
                     {{$professor->CPF}}
-                </th>
-                <th>
+                </td>
+                <td>
                     {{$professor->RG}}
-                </th>
-                <th>
+                </td>
+                <td>
                     <a href="{{route('professor.edit', $professor->id)}}">Editar</a>
-                </th>
-                <th>
+                </td>
+                <td>
                     <form action="{{route('professor.destroy', $professor->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit"> Excluir </button>
                     </form>
-                </th>
+                </td>
 
-                <th>
+                {{-- <th>
                     <a href="{{route('professor.visualizeAlunoTreino', $aluno->id)}}">Visualizar </a>
-                </th>
+                </th> --}}
             </tr>
             @endforeach
         </tbody>
     </table>
+    <form action="{{route('professor.create')}}" method= "GET">
+    <button> adicionar </button>
 </x-layout>
