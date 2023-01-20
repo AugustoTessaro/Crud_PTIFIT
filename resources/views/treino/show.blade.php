@@ -63,9 +63,9 @@
         <tbody>     
             @foreach ($dexercicios as $exercicio)       
             <tr>    
-                <th>
+                <td>
                     {{$exercicio->tipo_exercicio->name}}
-                </th>
+                </td>
                 <th>
                     {{$exercicio->repetitions}}
                 </th>

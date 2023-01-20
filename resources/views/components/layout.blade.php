@@ -7,6 +7,7 @@
     <title>{{$title}}</title>
 
     <a href="{{route('alunos.index')}}">Listagem de alunos</a> 
+
     
     @if($role != 'aluno')
         <a href="{{route('professor.index')}}">Listagem de professores</a>

@@ -24,15 +24,6 @@ use App\Models\Equipamento;
 
 Route::get('/', function () {
 
-    // redirect('/login');
-
-    // $user = auth()->user();
-
-    //  if($user->role =! 'professor' &&   $user->role != 'admin'){
-    //     return redirect('/alunos');
-    // }
-    // return redirect('/professor');
-
     return redirect('alunos');
 });
 

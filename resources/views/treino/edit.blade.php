@@ -18,8 +18,6 @@
         <input type="hidden" value="{{$treino->id_aluno}}" name="id_aluno" id="id_aluno">
 
         <button type="submit"> Cadastrar </button>
-
-
     </form>
 
 </x-layout>

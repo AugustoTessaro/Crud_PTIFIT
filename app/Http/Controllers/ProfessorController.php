@@ -8,14 +8,17 @@ use App\Models\Professor;
 use App\Models\Treino;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfessorController extends Controller
-{
+{  
+   
     public function index()
     {
         $alunos = Alunos::all();  
-        $professores = Professor::all();         
-
+        $professores = Professor::all();
+                 
+        $logged_user = Auth::user(); 
         $user = auth()->user();
 
          if($user->role != 'professor' && $user->role != 'admin'){
@@ -24,11 +27,14 @@ class ProfessorController extends Controller
 
         return view('professor.index_professor')
              ->with('professores', $professores)
-             ->with('alunos', $alunos);
+             ->with('alunos', $alunos)
+             ->with('user', $logged_user);
     }
 
     public function create(){
-        return view('professor.create');
+        $logged_user = Auth::user(); 
+        return view('professor.create')
+        ->with('user', $logged_user);
     }
 
     public function store(Request $request)

@@ -1,4 +1,4 @@
-<x-layout title="Listagem de professores" role="admin">
+<x-layout title="Listagem de professores" :role="$user->role">
 
     <table>
         <thead>
@@ -53,6 +53,9 @@
                 </td>
                 <td>
                     {{$professor->CPF}}
+                </td>
+                <td>
+                    {{$professor->RG}}
                 </td>
                 <td>
                     {{$professor->RG}}

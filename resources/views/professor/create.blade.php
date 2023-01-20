@@ -1,4 +1,4 @@
-<x-layout title="Cadastrar">
+<x-layout title="Cadastrar" :role="$user->role">
 
     <form action="{{route('professor.store')}}" method="POST">
         @csrf
