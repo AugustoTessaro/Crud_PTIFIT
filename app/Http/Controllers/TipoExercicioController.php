@@ -14,7 +14,7 @@ class TipoExercicioController extends Controller
         $tipos_exericicio = TipoExercicio::all();
         return view('tipo_exercicio.index')
         ->with("tipos_exercicio", $tipos_exericicio)
-        ->with("user", $logged_user);
+        // ->with("user", $logged_user);
     }
 
     public function create(){  
