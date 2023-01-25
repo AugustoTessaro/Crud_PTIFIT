@@ -1,4 +1,4 @@
-<x-layout title="Editar">
+<x-layout title="Editar" :role="$user->role">
 
     <form action="{{route('alunos.update', $aluno->id)}}" method="POST">
         @csrf

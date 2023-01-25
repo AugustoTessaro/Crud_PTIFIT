@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('professor', function (Blueprint $table) {
             $table->id();
-            $table->string("name");            
+            $table->string("name");    
+            $table->date('dateBirth');        
             $table->string("CPF");
+            $table->string("RG");
             $table->string("phone");
+            $table->integer('age');
             $table->string("professional_qualification");
             $table->foreignId("id_endereco")->references("id")->on("endereco")->onDelete("cascade");
             $table->foreignId("id_user")->references("id")->on("users")->onDelete("cascade");

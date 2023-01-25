@@ -11,6 +11,8 @@
     
     @if($role != 'aluno')
         <a href="{{route('professor.index')}}">Listagem de professores</a>
+        <a href="{{route('equipamento.index')}}">Listagem de equipamentos</a>
+        <a href="{{route('tipo_exercicio.index')}}">Cadastrar tipo de Exercicio</a>
     @endif
 
     <form action="{{route('logout')}}" method= "GET">

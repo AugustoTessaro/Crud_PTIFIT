@@ -9,6 +9,7 @@ use App\Models\Treino;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ProfessorController extends Controller
 {  
@@ -55,12 +56,15 @@ class ProfessorController extends Controller
         $endereco->save();
 
         $professor = new Professor();
-        $professor->name = $request->name;        
-        $professor->CPF = $request->CPF;        
+        $professor->name = $request->name;  
+        $professor->dateBirth = $request->dateBirth;      
+        $professor->CPF = $request->CPF;       
+        $professor->RG = $request->RG;     
         $professor->phone = $request->phone;                
         $professor->professional_qualification = $request->professional_qualification;                
         $professor->id_endereco = $endereco->id;        
         $professor->id_user = $user->id;
+        $professor->age = Carbon::parse($request->dateBirth)->age;
         $professor->save();
 
         auth()->login($user);
@@ -77,8 +81,10 @@ class ProfessorController extends Controller
 
     public function edit(Professor $professor)
     {
+        $logged_user = Auth::user(); 
         return view('professor.edit')
-            ->with('professor', $professor);
+            ->with('professor', $professor)
+            ->with('user', $logged_user);
     }
 
     public function update(Request $request, Professor $professor)

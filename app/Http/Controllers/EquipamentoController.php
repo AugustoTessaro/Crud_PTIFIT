@@ -4,17 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipamento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EquipamentoController extends Controller
 {    
     public function index(){
+        $logged_user = Auth::user(); 
         $equipamentos = Equipamento::all();
         return view('equipamento.index')
+        ->with("user", $logged_user)
         ->with("equipamentos", $equipamentos);
     }
 
-    public function create(){        
-        return view('equipamento.create');        
+    public function create(){  
+        $logged_user = Auth::user();      
+        return view('equipamento.create')   
+        ->with("user", $logged_user);     
     }
 
     public function store(Request $request)

@@ -46,5 +46,5 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::resource("/equipamento", EquipamentoController::class);
 
-    Route::resource("/tipo-exercicio", TipoExercicioController::class);
+    Route::resource("/tipo_exercicio", TipoExercicioController::class);
 });

@@ -1,6 +1,6 @@
-<x-layout title="Atualizar">
+<x-layout title="Atualizar" :role="$user->role">
 
-    <form action="{{route('tipo-exercicio.update', $data['tipo_exercicio']->id)}}" method="POST">
+    <form action="{{route('tipo_exercicio.update', $data['tipo_exercicio']->id)}}" method="POST">
         @csrf              
         @method('PUT')
         <label for="name"> Nome </label>

@@ -1,6 +1,6 @@
-<x-layout title="Criar">
+<x-layout title="Criar" :role="$user->role">
 
-    <form action="{{route('tipo-exercicio.store')}}" method="POST">
+    <form action="{{route('tipo_exercicio.store')}}" method="POST">
         @csrf              
         <label for="name"> Nome </label>
         <input type="text" name="name" id="name">

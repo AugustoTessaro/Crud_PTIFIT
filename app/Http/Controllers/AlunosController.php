@@ -15,14 +15,18 @@ class AlunosController extends Controller
     {
         $alunos = Alunos::all();
         $logged_user = Auth::user();      
-        
+     
         return view('alunos.index')
            ->with('alunos', $alunos)
            ->with('user', $logged_user);
     }
 
-    public function create(){
-        return view('alunos.create');
+    public function create()
+    {
+        $logged_user = Auth::user(); 
+
+        return view('alunos.create')
+        ->with('user', $logged_user);
     }
 
     public function store(Request $request)

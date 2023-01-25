@@ -1,4 +1,4 @@
-<x-layout title="Editar">
+<x-layout title="Editar" :role="$user->role">
 
     <form action="{{route('professor.update', $professor->id)}}" method="POST">
         @csrf
@@ -6,8 +6,14 @@
         <label for="name"> Nome </label>
         <input type="text" value="{{$professor->name}}" name="name" id="name">
 
+        <label for="dateBirth"> Data nascimento </label>
+        <input type="date" value="{{$professor->dateBirth}}" name="dateBirth" id="dateBirth">
+
         <label for="CPF"> CPF </label>
         <input type="text" value="{{$professor->CPF}}" name="CPF" id="CPF">
+
+        <label for="RG"> RG </label>
+        <input type="text" value="{{$professor->RG}}" name="RG" id="RG">
 
         <label for="professional_qualification"> Qualificação profissional </label>
         <input type="text" value="{{$professor->professional_qualification}}" name="professional_qualification" id="professional_qualification">  

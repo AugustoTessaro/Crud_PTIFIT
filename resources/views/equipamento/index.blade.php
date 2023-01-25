@@ -1,4 +1,4 @@
-<x-layout title="Listagem de Equipamentos">
+<x-layout title="Listagem de Equipamentos" :role="$user->role">
 
     <table>
         <thead>
@@ -24,27 +24,30 @@
         <tbody>
             @foreach ($equipamentos as $equipamento)
             <tr>
-                <th>
+                <td>
                     {{$equipamento->name}}
-                </th>
-                <th>
+                </td>
+                <td>
                     <img src="{{$equipamento->image_link}}" alt="imagem" >                    
-                </th>
-                <th>
+                </td>
+                <td>
                     {{$equipamento->description}}
-                </th>
-                <th>
+                </td>
+                <td>
                     <a href="{{route('equipamento.edit', $equipamento->id)}}">Editar</a>
-                </th>                
-                <th>
+                </td>                
+                <td>
                     <form action="{{route('equipamento.destroy', $equipamento->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit"> Excluir </button>
                     </form>
-                </th>
+                </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    <form action="{{route('equipamento.create')}}" method= "GET">
+        <button> adicionar </button>
+    </form>
 </x-layout>

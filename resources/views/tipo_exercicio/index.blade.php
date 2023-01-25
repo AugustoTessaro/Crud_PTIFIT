@@ -1,4 +1,4 @@
-<x-layout title="Listagem de Tipos de Exercicio">
+<x-layout title="Listagem de Tipos de Exercicio" :role="$user->role">
 
     <table>
         <thead>
@@ -6,9 +6,9 @@
                 <th>
                     nome
                 </th>
-                <th>
+                {{-- <th>
                     gif
-                </th>
+                </th> --}}
                 <th>
                     descrição
                 </th>
@@ -27,30 +27,32 @@
         <tbody>
             @foreach ($tipos_exercicio as $tipo_exercicio)
             <tr>
-                <th>
+                <td>
                     {{$tipo_exercicio->name}}
-                </th>
-                <th>
+                </td>
+                {{-- <th>
                     <img src="{{$tipo_exercicio->gif_link}}" alt="imagem" >                    
-                </th>
-                <th>
+                </th> --}}
+                <td>
                     {{$tipo_exercicio->description}}
-                </th>
-                <th>
+                </td>
+                <td>
                     {{$tipo_exercicio->equipamento->name}}
-                </th>
-                <th>
-                    <a href="{{route('tipo-exercicio.edit', $tipo_exercicio->id)}}">Editar</a>
-                </th>                
-                <th>
-                    <form action="{{route('tipo-exercicio.destroy', $tipo_exercicio->id)}}" method="POST">
+                </td>
+                <td>
+                    <a href="{{route('tipo_exercicio.edit', $tipo_exercicio->id)}}">Editar</a>
+                </td>                
+                <td>
+                    <form action="{{route('tipo_exercicio.destroy', $tipo_exercicio->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit"> Excluir </button>
                     </form>
-                </th>
+                </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    <form action="{{route('tipo_exercicio.create')}}" method= "GET">
+        <button> adicionar </button>
 </x-layout>

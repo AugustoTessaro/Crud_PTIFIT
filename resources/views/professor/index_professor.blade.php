@@ -58,7 +58,22 @@
                     {{$professor->RG}}
                 </td>
                 <td>
-                    {{$professor->RG}}
+                    {{$professor->phone}}
+                </td>
+                <td>
+                    {{$professor->endereco->city}}
+                </td>
+                <td>
+                    {{$professor->endereco->neighborhood}}
+                </td>
+                <td>
+                    {{$professor->endereco->street}}
+                </td>
+                <td>
+                    {{$professor->endereco->number}}
+                </td>
+                <td>
+                    {{$professor->endereco->CEP}}
                 </td>
                 <td>
                     <a href="{{route('professor.edit', $professor->id)}}">Editar</a>
