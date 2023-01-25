@@ -19,7 +19,7 @@
                     editar
                 </th>
                 <th>
-                    deletar
+                    deletarddddddd
                 </th>           
             </tr>
 
