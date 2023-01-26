@@ -71,8 +71,10 @@ class AlunosController extends Controller
 
     public function edit(Alunos $aluno)
     {
+        $logged_user = Auth::user();
         return view('alunos.edit')
-            ->with('aluno', $aluno);
+            ->with('aluno', $aluno)
+            ->with('user', $logged_user);
     }
 
     public function update(Request $request, Alunos $aluno)

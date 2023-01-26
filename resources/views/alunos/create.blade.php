@@ -1,5 +1,8 @@
-<x-layout title="Cadastrar" :role="$user->role">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/create.css')}}">
+</head>
 
+<x-layout title="Cadastrar" :role="$user->role">
     <form action="{{route('alunos.store')}}" method="POST">
         @csrf
         <label for="name"> Nome </label>
@@ -43,3 +46,5 @@
     </form>
 
 </x-layout>
+
+
