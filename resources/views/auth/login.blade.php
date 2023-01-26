@@ -1,4 +1,6 @@
-
+<head>
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/menu/menu.css')}}">
+</head>
 <form action="{{route('login.perform')}}" method="POST">
     @csrf
     <label for="email"> Email </label>
