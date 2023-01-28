@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Alunos;
 use App\Models\Endereco;
 use App\Models\User;
+use App\Models\Treino;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Psy\Command\WhereamiCommand;
+
 
 class AlunosController extends Controller
 {
@@ -36,6 +39,13 @@ class AlunosController extends Controller
         $user->email = $request->email;
         $user->role = 'aluno';
 
+        $email_check = User::all()->where('email', '=', $request->email);
+
+        if(sizeof($email_check)> 0 ){
+             return to_route('alunos.create');
+        }
+       
+
         $user->save();        
 
         $endereco = new Endereco();
@@ -52,20 +62,19 @@ class AlunosController extends Controller
         $aluno->CPF = $request->CPF;
         $aluno->RG = $request->RG;
         $aluno->phone = $request->phone;                
-        $aluno->id_endereco = $endereco->id;        
-        $aluno->id_user = $user->id;
+        $aluno->endereco_id = $endereco->id;        
+        $aluno->user_id = $user->id;
         $aluno->age = Carbon::parse($request->dateBirth)->age;
         $aluno->save();
-
-        auth()->login($user);
 
         return to_route('alunos.index');
 
     }
 
     public function destroy(Alunos $aluno){
+        $user_id = $aluno->user_id;
+        User::destroy($user_id);
         $aluno->delete();
-
         return to_route('alunos.index');
     }
 
@@ -92,9 +101,31 @@ class AlunosController extends Controller
         $aluno->CPF = $request->CPF;
         $aluno->RG = $request->RG;
         $aluno->phone = $request->phone;        
-        $aluno->id_endereco = $endereco->id;        
+        $aluno->endereco_id = $endereco->id;        
         $aluno->save();        
 
         return to_route('alunos.index');
+    }
+
+    public function listTreinoFromUser(){
+        $logged_user = Auth::user();
+
+        $aluno = Alunos::where('user_id', '=', $logged_user->id)->first();
+        $treinos = Treino::all()->where('id_aluno', '=', $aluno->id);
+
+        return view('alunos.treino')
+        ->with('treinos', $treinos)
+        ->with('user', $logged_user);
+    }
+
+    public function show(Alunos $alunos){
+        $logged_user = Auth::user();
+        $aluno = Alunos::where('user_id', '=', $logged_user->id)->first();
+        $endereco = $aluno->endereco;
+        return view('alunos.profile')
+        ->with('user', $logged_user)
+        ->with('aluno', $aluno)
+        ->with('e', $endereco);
+      
     }
 }

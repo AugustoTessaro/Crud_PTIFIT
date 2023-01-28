@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string("phone");
             $table->integer('age');
             $table->string("professional_qualification");
-            $table->foreignId("id_endereco")->references("id")->on("endereco")->onDelete("cascade");
-            $table->foreignId("id_user")->references("id")->on("users")->onDelete("cascade");
+            $table->foreignId("endereco_id")->references("id")->on("endereco")->onDelete("cascade");
+            $table->foreignId("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->timestamps();
         });
     }

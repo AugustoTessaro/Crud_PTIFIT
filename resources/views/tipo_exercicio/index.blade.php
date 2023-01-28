@@ -1,4 +1,4 @@
-<x-layout title="Listagem de Tipos de Exercicio" :role="$user->role">
+<x-layout title="Listagem de Tipos de Exercicio" :user="$user">
 
     <table>
         <thead>

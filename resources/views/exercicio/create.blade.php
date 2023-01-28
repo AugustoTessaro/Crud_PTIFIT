@@ -1,24 +1,24 @@
-<x-layout title="Criar" :role="$user->role">
+<x-layout title="Criar" :user="$user">
 
     <form action="{{route('exercicio.store')}}" method="POST">
         @csrf              
         <label for="repetitions"> Repetições </label>
-        <input type="number" name="repetitions" id="repetitions">
+        <input type="number" name="repetitions" id="repetitions" required>
 
         <label for="sets"> Séries </label>
-        <input type="number" name="sets" id="sets">
+        <input type="number" name="sets" id="sets" required>
 
         <label for="weight"> Peso </label>
-        <input type="number" name="weight" id="weight">        
+        <input type="number" name="weight" id="weight" required>        
 
-        <label for="id_tipo_exercicio"> Tipo de exercicio </label>
-        <select name="id_tipo_exercicio" id="id_tipo_exercicio">
+        <label for="tipo_exercicio_id"> Tipo de exercicio </label>
+        <select name="tipo_exercicio_id" id="tipo_exercicio_id" required>
             @foreach ($data['tipos_exercicio'] as $tipo_exercicio)
                 <option value="{{$tipo_exercicio->id}}">{{$tipo_exercicio->name}}</option>
             @endforeach
         </select>        
         
-        <input type="hidden" value="{{$data['treino']->id}}" name="id_treino" id="id_treino">
+        <input type="hidden" value="{{$data['treino']->id}}" name="treino_id" id="treino_id">
 
         <button type="submit"> Cadastrar </button>
 

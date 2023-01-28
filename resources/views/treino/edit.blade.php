@@ -1,4 +1,4 @@
-<x-layout title="Editar">
+<x-layout title="Editar" :user="$user">
 
     <form action="{{route('treino.update', $treino->id)}}" method="POST">
         @csrf

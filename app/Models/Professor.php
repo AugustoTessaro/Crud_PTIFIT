@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Professor extends Model
 {
@@ -18,7 +19,11 @@ class Professor extends Model
         'professional_qualification',
     ];
 
-    public function endereco(){
-        return $this->belongsTo(Endereco::class, 'id_endereco'); 
-    }  
+    public function endereco(): BelongsTo {
+        return $this->belongsTo(Endereco::class);
+    }
+
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class);
+    }
 }

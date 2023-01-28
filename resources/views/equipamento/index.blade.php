@@ -1,4 +1,4 @@
-<x-layout title="Listagem de Equipamentos" :role="$user->role">
+<x-layout title="Listagem de Equipamentos" :user="$user">
 
     <table>
         <thead>

@@ -1,4 +1,4 @@
-<x-layout title="Listagem de Alunos" :role="$user->role">
+<x-layout title="Listagem de Alunos" :user="$user">
 
     <table>
         <thead>
@@ -38,6 +38,9 @@
                 </th>
                 <th>
                     Excluir
+                </th>
+                <th>
+                    Treinos
                 </th>
             </tr>
 
@@ -86,6 +89,11 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit"> Excluir </button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{{route('professor.visualizeAlunoTreino', $aluno->id)}}" method= "GET">
+                        <button> Ver treino </button>
                     </form>
                 </td>
             </tr>

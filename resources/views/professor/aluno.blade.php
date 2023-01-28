@@ -1,4 +1,4 @@
-<x-layout title="Listagem de Alunos">
+<x-layout title="Listagem de Alunos" :user="$user">
     <table>
         <thead>
             <tr>
@@ -43,41 +43,42 @@
         </thead>
         <tbody>            
             <tr>
+                
                 <th>
-                    {{$aluno->name}}
+                    {{$data['aluno']->name}}
                 </th>
                 <th>
-                    {{$aluno->age}}
+                    {{$data['aluno']->age}}
                 </th>
                 <th>
-                    {{$aluno->CPF}}
+                    {{$data['aluno']->CPF}}
                 </th>
                 <th>
-                    {{$aluno->RG}}
+                    {{$data['aluno']->RG}}
                 </th>
                 <th>
-                    {{$aluno->phone}}
+                    {{$data['aluno']->phone}}
                 </th>
                 <th>
-                    {{$aluno->endereco->city}}
+                    {{$data['aluno']->endereco->city}}
                 </th>
                 <th>
-                    {{$aluno->endereco->neighborhood}}
+                    {{$data['aluno']->endereco->neighborhood}}
                 </th>
                 <th>
-                    {{$aluno->endereco->street}}
+                    {{$data['aluno']->endereco->street}}
                 </th>
                 <th>
-                    {{$aluno->endereco->number}}
+                    {{$data['aluno']->endereco->number}}
                 </th>
                 <th>
-                    {{$aluno->endereco->CEP}}
+                    {{$data['aluno']->endereco->CEP}}
                 </th>
                 <th>
-                    <a href="{{route('alunos.edit', $aluno->id)}}">Editar</a>
+                    <a href="{{route('alunos.edit', $data['aluno']->id)}}">Editar</a>
                 </th>
                 <th>
-                    <form action="{{route('alunos.destroy', $aluno->id)}}" method="POST">
+                    <form action="{{route('alunos.destroy', $data['aluno']->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit"> Excluir </button>
@@ -86,9 +87,9 @@
             </tr>            
         </tbody>
     </table>
-</x-layout>
 
-<x-layout title="Listagem de Alunos">
+
+
 
     <table>
         <thead>
@@ -153,9 +154,9 @@
         </tbody>
     </table>
     
-    <form action="{{route('professor.aluno.create')}}" method= "GET">
+    {{-- <form action="{{route('aluno.create')}}" method= "GET">
     <button> adicionar </button>
-    </form>
+    </form> --}}
     <a href="{{route('treino.createFromAluno', $data)}}">Criar treino</a>
 </x-layout>
 

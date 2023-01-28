@@ -1,4 +1,4 @@
-<x-layout title="Listagem de professores" :role="$user->role">
+<x-layout title="Listagem de professores" :user="$user">
 
     <table>
         <thead>
@@ -33,12 +33,14 @@
                 <th>
                     CEP
                 </th>
+                @if($user->role == 'admin')
                 <th>
                     Editar
                 </th>
                 <th>
                     Excluir
                 </th>
+                @endif
             </tr>
 
         </thead>
@@ -75,6 +77,7 @@
                 <td>
                     {{$professor->endereco->CEP}}
                 </td>
+                @if($user->role == 'admin')
                 <td>
                     <a href="{{route('professor.edit', $professor->id)}}">Editar</a>
                 </td>
@@ -85,6 +88,7 @@
                         <button type="submit"> Excluir </button>
                     </form>
                 </td>
+                @endif
 
                 {{-- <th>
                     <a href="{{route('professor.visualizeAlunoTreino', $aluno->id)}}">Visualizar </a>

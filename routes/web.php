@@ -23,6 +23,7 @@ use App\Models\Equipamento;
 */
 
 Route::get('/', function () {
+    
 
     return redirect('alunos');
 });
@@ -32,8 +33,10 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
 
 Route::group(['middleware' => ['auth']], function() {
 
+    Route::get('/alunos/treino/',[AlunosController::class, 'listTreinoFromUser'])->name('alunos.treino');
     Route::resource('/alunos', AlunosController::class);
     Route::get('/logout', [LogoutController::class, 'perform'])->name('logout');  
+    
 
     Route::resource('/professor', ProfessorController::class);
     Route::get('/professor/visualize-aluno-treino/{aluno}', [ProfessorController::class, 'visualizeAlunoTreino'])->name('professor.visualizeAlunoTreino');

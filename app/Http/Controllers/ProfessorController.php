@@ -45,6 +45,12 @@ class ProfessorController extends Controller
         $user->email = $request->email;
         $user->role = 'professor';
 
+        $email_check = User::all()->where('email', '=', $request->email);
+
+        if(sizeof($email_check)> 0 ){
+             return to_route('alunos.create');
+        }
+        
         $user->save();        
 
         $endereco = new Endereco();
@@ -62,18 +68,19 @@ class ProfessorController extends Controller
         $professor->RG = $request->RG;     
         $professor->phone = $request->phone;                
         $professor->professional_qualification = $request->professional_qualification;                
-        $professor->id_endereco = $endereco->id;        
-        $professor->id_user = $user->id;
+        $professor->endereco_id = $endereco->id;        
+        $professor->user_id = $user->id;
         $professor->age = Carbon::parse($request->dateBirth)->age;
         $professor->save();
-
-        auth()->login($user);
 
         return to_route('professor.index');
 
     }
 
     public function destroy(Professor $professor){
+
+        $user_id = $professor->user_id;
+        User::destroy($user_id);
         $professor->delete();
 
         return to_route('professor.index');
@@ -101,27 +108,38 @@ class ProfessorController extends Controller
         $professor->CPF = $request->CPF;        
         $professor->phone = $request->phone;                
         $professor->professional_qualification = $request->professional_qualification;                
-        $professor->id_endereco = $endereco->id;
+        $professor->endereco_id = $endereco->id;
         $professor->save();    
 
         return to_route('professor.index');
     }
 
     public function show(Professor $professor){
-        echo "oi";
+        $logged_user = Auth::user();
+        $p = Professor::where('user_id', '=', $logged_user->id)->first();
+        $endereco = $p->endereco;
+        
+        return view('professor.profile')
+        ->with('user', $logged_user)
+        ->with('professor', $p)
+        ->with('e', $endereco);
     }
 
-    public function visualizeAlunoTreino(Alunos $aluno){                
+    public function visualizeAlunoTreino(Alunos $aluno){  
+        $logged_user = Auth::user();              
         $treinos = Treino::all()->where('id_aluno', '=', $aluno->id);
 
         $data = [
             'treinos'=>$treinos,
             'aluno'=>$aluno
         ];        
-
+        
         return view('professor.aluno')
-            ->with('data', $data);
+            ->with('data', $data)
+            ->with('user', $logged_user);
     }
+
+
 }
 
 

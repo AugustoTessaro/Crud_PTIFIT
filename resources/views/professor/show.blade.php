@@ -20,16 +20,16 @@
         <tbody>            
             <tr>
                 <th>
-                    {{$data['treino']->init_date}}
+                    {{$treino->init_date}}
                 </th>
                 <th>
-                    {{$data['treino']->end_date}}
+                    {{$treino->end_date}}
                 </th>
                 <th>
-                    {{$data['treino']->name}}
+                    {{$treino->name}}
                 </th>
                 <th>
-                    {{$data['treino']->description}}
+                    {{$treino->description}}
                 </th>               
             </tr>            
         </tbody>
@@ -59,8 +59,8 @@
             </tr>
 
         </thead>
-        <tbody>    
-            @foreach ($data['exercicios'] as $exercicio)       
+        <tbody>     
+            @foreach ($dexercicios as $exercicio)       
             <tr>    
                 <td>
                     {{$exercicio->tipo_exercicio->name}}
@@ -73,9 +73,9 @@
                 </th>
                 <th>
                     {{$exercicio->weight}}
-                </th>      
+                </th>
+                      
                 <th>
-                    @if($user->role != 'aluno')
                     <a href="{{route('exercicio.edit', $exercicio->id)}}">Editar</a>
                 </th>                
                 <th>
@@ -85,12 +85,11 @@
                         <button type="submit"> Excluir </button>
                     </form>
                 </th>
-            </tr> 
-            @endif           
+            </tr>          
             @endforeach
         </tbody>        
     </table>
-    @if($user->role != 'aluno')
+    
     <a href="{{route('exercicio.createFromTreino', $data['treino']->id)}}">Adicionar exercicio </a>
-    @endif
+    
 </x-layout>

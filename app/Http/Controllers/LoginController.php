@@ -21,7 +21,6 @@ class LoginController extends Controller
             'password' => $request->password
         ];
 
-
         if(!Auth::validate($credentials)):
             return redirect()->to('login')
             ->withErrors(trans('auth.failed'));
@@ -31,7 +30,10 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        return $this->authenticated($request, $user);
+        if($user->role == 'aluno'):
+            return redirect()->to('alunos/treino');
+        endif;
+        return redirect()->to('alunos');
     }
 
     protected function authenticated(Request $request, $user) 
@@ -47,7 +49,7 @@ class LoginController extends Controller
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
     ], [
-        'username.unique' => 'Sorry, this username has already been taken!',
+        'username.unique' => 'Sorry, this username  has already been taken!',
     ]);
 }
 }

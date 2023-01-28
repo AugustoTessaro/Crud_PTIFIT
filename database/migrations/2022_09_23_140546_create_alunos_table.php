@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('CPF');
             $table->string('RG');
             $table->string('phone');
-            $table->foreignId("id_endereco")->references("id")->on("endereco")->onDelete('cascade');
-            $table->foreignId("id_user")->references("id")->on("users")->onDelete('cascade');
+            $table->foreignId("endereco_id")->references("id")->on("endereco")->onDelete('cascade');
+            $table->foreignId("user_id")->references("id")->on("users")->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -1,4 +1,4 @@
-<x-layout title="Criar" :role="$user->role">
+<x-layout title="Criar" :user="$user">
 
     <form action="{{route('exercicio.update', $data['exercicio']->id)}}" method="POST">
         @csrf       
