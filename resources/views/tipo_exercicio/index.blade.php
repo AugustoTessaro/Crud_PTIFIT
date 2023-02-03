@@ -1,58 +1,37 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap" rel="stylesheet">
 <x-layout title="Listagem de Tipos de Exercicio" :user="$user">
 
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    nome
-                </th>
-                {{-- <th>
-                    gif
-                </th> --}}
-                <th>
-                    descrição
-                </th>
-                <th>
-                    equipamento
-                </th>     
-                <th>
-                    editar
-                </th>
-                <th>
-                    deletar
-                </th>           
-            </tr>
+<head>
+<link rel="stylesheet" type="text/css" href="{{URL::asset('css/tipo_exercicio/index.css')}}">
+</head>
 
-        </thead>
-        <tbody>
+<h2>Lista de Tipos de Exercicio</h2>
+<hr>
+
+            <div class="card-group">
             @foreach ($tipos_exercicio as $tipo_exercicio)
-            <tr>
-                <td>
-                    {{$tipo_exercicio->name}}
-                </td>
-                {{-- <th>
-                    <img src="{{$tipo_exercicio->gif_link}}" alt="imagem" >                    
-                </th> --}}
-                <td>
-                    {{$tipo_exercicio->description}}
-                </td>
-                <td>
-                    {{$tipo_exercicio->equipamento->name}}
-                </td>
-                <td>
-                    <a href="{{route('tipo_exercicio.edit', $tipo_exercicio->id)}}">Editar</a>
-                </td>                
-                <td>
+             <div class="card">     
+            <p>{{$tipo_exercicio->name}}</p>
+            <p>{{$tipo_exercicio->description}}</p>
+                
+            <p>{{$tipo_exercicio->equipamento->name}}</p>
+            
+                    <form action="{{route('tipo_exercicio.edit', $tipo_exercicio->id)}}" method="GET">
+                        @csrf
+                    <button class="button-editar" type="submit"> Editar </button>
+                    </form>
+
                     <form action="{{route('tipo_exercicio.destroy', $tipo_exercicio->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit"> Excluir </button>
+                        <button class="button-excluir" type="submit"> Excluir </button>
                     </form>
-                </td>
-            </tr>
+             </div>
             @endforeach
-        </tbody>
-    </table>
+            </div>        
+
     <form action="{{route('tipo_exercicio.create')}}" method= "GET">
-        <button> adicionar </button>
+        <button class="button-adicionar"> Adicionar </button>
 </x-layout>

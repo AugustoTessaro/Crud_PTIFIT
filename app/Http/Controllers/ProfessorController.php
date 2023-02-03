@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alunos;
 use App\Models\Endereco;
+use App\Models\Exercicio;
 use App\Models\Professor;
 use App\Models\Treino;
 use App\Models\User;
@@ -127,7 +128,7 @@ class ProfessorController extends Controller
 
     public function visualizeAlunoTreino(Alunos $aluno){  
         $logged_user = Auth::user();              
-        $treinos = Treino::all()->where('id_aluno', '=', $aluno->id);
+        $treinos = Treino::all()->where('aluno_id', '=', $aluno->id);
 
         $data = [
             'treinos'=>$treinos,

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Alunos extends Model
@@ -22,6 +23,9 @@ class Alunos extends Model
         'id_user'
     ];    
 
+    public function aluno(): HasMany{
+        return $this->hasMany(Treino::class);
+    }
     
 
     public function user(): BelongsTo {

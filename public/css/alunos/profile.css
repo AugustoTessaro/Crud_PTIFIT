@@ -1,0 +1,68 @@
+body{
+    margin: 0;
+    background-color: #efecea
+}
+
+
+.card{
+    font-family: 'Manrope', sans-serif;
+    background-color: #d9d9d9;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border: 0;
+}
+
+.card-group{
+    font-family: 'Manrope', sans-serif;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    padding: 30px;
+    padding-left: 40px;
+    padding-right: 40px;   
+}
+
+@media screen and (max-width: 1302px){
+    .card-group{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (max-width: 1074px){
+    .card-group{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (max-width: 480px){
+    .card-group{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.name{
+    font-family: 'Manrope', sans-serif;
+    margin-left: 4%;
+    margin-top: 2%;
+    font-size:x-large;
+}
+
+h2{
+    font-family: 'Manrope', sans-serif;
+    margin-left: 4%;
+    font-size: large;
+}
+
+hr{
+    font-family: 'Manrope', sans-serif;
+    border: 2px solid black;
+    margin-left: 4%;
+}
+
+p{
+    font-family: 'Manrope', sans-serif;
+    margin-left: 4%;
+    margin-top: 2%;
+  
+}

@@ -16,6 +16,19 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
+        $request->validate(
+            [
+                'email' =>  'required|email' ,
+                'password' => 'required'
+            ],
+            [
+                'email.required'  => 'Digite seu email',
+                'email.email'  => 'Digite um email válido',
+                'password.required' => 'Digite sua senha' 
+            ]
+        );
+
         $credentials = [
             'email' => $request->email,
             'password' => $request->password
@@ -36,20 +49,5 @@ class LoginController extends Controller
         return redirect()->to('alunos');
     }
 
-    protected function authenticated(Request $request, $user) 
-    {    
-        $redirect_url = $user->role != 'professor' && $user->role != 'admin' ? '/alunos' : '/professor';
 
-        return redirect()->intended($redirect_url);
-    }   
-
-    protected function validator(array $data)
-{
-    return Validator::make($data, [
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        'password' => ['required', 'string', 'min:8', 'confirmed'],
-    ], [
-        'username.unique' => 'Sorry, this username  has already been taken!',
-    ]);
-}
 }

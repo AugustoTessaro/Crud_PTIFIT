@@ -1,96 +1,50 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap" rel="stylesheet">
 <x-layout title="Treino" :user="$user">
-    <table>
-        <thead>
-            <tr>
-                <th>
-                Data de início
-                </th>
-                <th>
-                Data de término
-                </th>
-                <th>
-                Nome
-                </th>
-                <th>
-                Descrição
-                </th>                
-            </tr>
 
-        </thead>
-        <tbody>            
-            <tr>
-                <th>
-                    {{$data['treino']->init_date}}
-                </th>
-                <th>
-                    {{$data['treino']->end_date}}
-                </th>
-                <th>
-                    {{$data['treino']->name}}
-                </th>
-                <th>
-                    {{$data['treino']->description}}
-                </th>               
-            </tr>            
-        </tbody>
-    </table>
+<head>
+<link rel="stylesheet" type="text/css" href="{{URL::asset('css/treino/show.css')}}">
+</head>
 
-    <table>
-        <thead>
-            <tr>
-                <th>
-                Nome
-                </th>
-                <th>
-                Repetições
-                </th>
-                <th>
-                Séries
-                </th>
-                <th>
-                Peso
-                </th>     
-                <th>
-                    Editar
-                </th>     
-                <th>
-                    Deletar
-                </th>      
-            </tr>
+<body>
+    <h2>{{$data['treino']->name}}</h2>
+    <hr>
+    <h3>Exercícios</h3>
+    <p class="descricao">{{$data['treino']->description}}</p>
 
-        </thead>
-        <tbody>    
-            @foreach ($data['exercicios'] as $exercicio)       
-            <tr>    
-                <td>
-                    {{$exercicio->tipo_exercicio->name}}
-                </td>
-                <th>
-                    {{$exercicio->repetitions}}
-                </th>
-                <th>
-                    {{$exercicio->sets}}
-                </th>
-                <th>
-                    {{$exercicio->weight}}
-                </th>      
-                <th>
-                    @if($user->role != 'aluno')
-                    <a href="{{route('exercicio.edit', $exercicio->id)}}">Editar</a>
-                </th>                
-                <th>
+
+        <div class="card-group">
+            @foreach ($data['exercicios'] as $exercicio) 
+            <div class="card">      
+ 
+            <p>{{$exercicio->tipo_exercicio->name}}</p>
+            <p>Repetições: {{$exercicio->repetitions}}</p>
+            <p>Séries: {{$exercicio->sets}}</p>
+            <p>Peso: {{$exercicio->weight}}</p>
+    
+                @if($user->role != 'aluno')
+                    <form action="{{route('exercicio.edit', $exercicio->id)}}" method="GET">
+                    @csrf
+                    <button class="button-editar" type="submit"> Editar </button>
+                    </form>
+            
                     <form action="{{route('exercicio.destroy', $exercicio->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit"> Excluir </button>
+                        <button class="button-excluir" type="submit"> Excluir </button>
                     </form>
-                </th>
-            </tr> 
-            @endif           
+                @endif 
+            
+            </div>
             @endforeach
-        </tbody>        
-    </table>
-    @if($user->role != 'aluno')
-    <a href="{{route('exercicio.createFromTreino', $data['treino']->id)}}">Adicionar exercicio </a>
-    @endif
+            </div>
+    
+                @if($user->role != 'aluno')
+                <form action="{{route('exercicio.createFromTreino', $data['treino']->id)}}" method="GET">
+                @csrf
+                <button class="button-adicionar" type="submit"> Adicionar Exercício </button>
+                </form>
+                @endif
+</body>
 </x-layout>

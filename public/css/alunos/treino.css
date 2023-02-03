@@ -1,0 +1,75 @@
+body{
+    margin: 0;
+    background-color: #efecea
+}
+
+h2{
+    font-family: 'Manrope', sans-serif;
+    margin-left: 4%;
+    font-size: large;
+}
+
+hr{
+    font-family: 'Manrope', sans-serif;
+    border: 2px solid black;
+    margin-left: 4%;
+}
+
+.card{
+    font-family: 'Manrope', sans-serif;
+    background-color: #d9d9d9;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 1%;
+}
+
+
+.card-group{
+    font-family: 'Manrope', sans-serif;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5%;
+    padding: 30px;
+    padding-left: 40px;
+    padding-right: 40px;   
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1302px){
+    .card-group{
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 30px;
+
+    }
+}
+
+@media screen and (max-width: 1074px){
+    .card-group{
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 30px;
+
+    }
+}
+
+@media screen and (max-width: 480px){
+    .card-group{
+        grid-template-columns: repeat(1, 1fr);
+        margin-bottom: 30px;
+
+    }
+}
+
+.button-treino{
+    font-family: 'Manrope', sans-serif;
+    background-color: #6343ff;
+    border: none;
+    padding: 9px;
+    width: 100%;
+    border-radius: 0px;
+    color: white;
+    font-size: 15px;
+    position: center;
+    cursor: pointer;
+}
+

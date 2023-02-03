@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Equipamento;
+use App\Models\TipoExercicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,11 @@ class EquipamentoController extends Controller
     }
 
     public function destroy(Equipamento $equipamento){
+
+        $tipo_exercicios = TipoExercicio::all()->where('id_equipamento', '=', $equipamento->id);
+        TipoExercicio::destroy($tipo_exercicios);
         $equipamento->delete();
+
 
         return to_route('equipamento.index'); 
     }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->date("init_date");
             $table->date("end_date");
-            $table->foreignId("id_aluno")->references("id")->on("alunos")->onDelete('cascade');
+            $table->foreignId("aluno_id")->references("id")->on("alunos")->onDelete('cascade');
             $table->string("name");
             $table->string("description");
             $table->timestamps();

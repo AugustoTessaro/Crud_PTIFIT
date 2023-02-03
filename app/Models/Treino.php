@@ -16,11 +16,11 @@ class Treino extends Model
         'end_date',
         'name',
         'description',
-        'id_aluno'
+        'aluno_id'
     ];
 
     public function aluno(){
-        return $this->belongsTo(Alunos::class, 'id_aluno'); 
+        return $this->belongsTo(Alunos::class, 'aluno_id'); 
     }    
 
 }

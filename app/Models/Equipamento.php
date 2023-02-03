@@ -13,7 +13,6 @@ class Equipamento extends Model
 
     protected $fillable = [
         'name',
-        'image_link',
         'description'
     ];
 }

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer("repetitions");
             $table->integer("sets");
             $table->integer("weight");
-            $table->foreignId("id_treino")->references("id")->on("treino");
-            $table->foreignId("id_tipo_exercicio")->references("id")->on("tipo_exercicio")->onDelete('cascade');
+            $table->foreignId("treino_id")->references("id")->on("treino");
+            $table->foreignId("tipo_exercicio_id")->references("id")->on("tipo_exercicio")->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -1,162 +1,52 @@
-<x-layout title="Listagem de Alunos" :user="$user">
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    nome
-                </th>
-                <th>
-                    idade
-                </th>
-                <th>
-                    CPF
-                </th>
-                <th>
-                    RG
-                </th>
-                <th>
-                    phone
-                </th>
-                <th>
-                    city
-                </th>
-                <th>
-                    neighborhood
-                </th>
-                <th>
-                    street
-                </th>
-                <th>
-                    number
-                </th>
-                <th>
-                    CEP
-                </th>
-                <th>
-                    Editar
-                </th>
-                <th>
-                    Excluir
-                </th>
-            </tr>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap" rel="stylesheet">
+<x-layout title="Treinos" :user="$user">
 
-        </thead>
-        <tbody>            
-            <tr>
-                
-                <th>
-                    {{$data['aluno']->name}}
-                </th>
-                <th>
-                    {{$data['aluno']->age}}
-                </th>
-                <th>
-                    {{$data['aluno']->CPF}}
-                </th>
-                <th>
-                    {{$data['aluno']->RG}}
-                </th>
-                <th>
-                    {{$data['aluno']->phone}}
-                </th>
-                <th>
-                    {{$data['aluno']->endereco->city}}
-                </th>
-                <th>
-                    {{$data['aluno']->endereco->neighborhood}}
-                </th>
-                <th>
-                    {{$data['aluno']->endereco->street}}
-                </th>
-                <th>
-                    {{$data['aluno']->endereco->number}}
-                </th>
-                <th>
-                    {{$data['aluno']->endereco->CEP}}
-                </th>
-                <th>
-                    <a href="{{route('alunos.edit', $data['aluno']->id)}}">Editar</a>
-                </th>
-                <th>
-                    <form action="{{route('alunos.destroy', $data['aluno']->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit"> Excluir </button>
-                    </form>
-                </th>
-            </tr>            
-        </tbody>
-    </table>
+<head>
+<link rel="stylesheet" type="text/css" href="{{URL::asset('css/professores/aluno.css')}}">
+</head>
 
+<h2>{{$data['aluno']->name}}</h2>  
+<hr>
 
+    <div class="card-group">
+    @foreach ($data['treinos'] as $treino)
+    <div class="card rounded-4">
+       
+        <div class="card-body">
+        <h3>{{$treino->name}}</h3>
+        <p>Início: {{$treino->init_date}}</p>    
+        <p>Fim: {{$treino->end_date}}</p>
+        </div>
+            <div class="card-footer">
+            <form action="{{route('treino.edit', $treino->id)}}" method="GET">
+            <button class="button-editar" type="submit">Editar Treino</button>
+            </form>               
+                    
 
-
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    Data inicial
-                </th>
-                <th>
-                    Data final
-                </th>
-                <th>
-                    Id Aluno
-                </th>
-                <th>
-                    Nome do Treino
-                </th>
-                <th>
-                    Descrição
-                </th>      
-
-                <th>
-                    Editar
-                </th>
-                <th>
-                    Excluir
-                </th>
-
-            </tr>
-
-        </thead>
-        <tbody>
-            @foreach ($data['treinos'] as $treino)
-            <tr>
-                <th>
-                    {{$treino->init_date}}
-                </th>
-                <th>
-                    {{$treino->end_date}}
-                </th>
-                <th>
-                    {{$treino->id_aluno}}
-                </th>
-                <th>
-                    {{$treino->name}}
-                </th>
-                <th>
-                    {{$treino->description}}
-                </th>      
-        
-                <th>
-                    <a href="{{route('treino.edit', $treino->id)}}">Editar</a>
-                </th>
-                <th>
-                    <form action="{{route('treino.destroy', $treino->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit"> Excluir </button>
-                    </form>
-                </th>
-            </tr>
+            <form action="{{route('exercicio.createFromTreino', $treino->id)}}" method="GET">
+            <button class="button-editar" type="submit">Adicionar exercício</button>
+            </form>    
+            
+            <form action="{{route('treino.show', $treino->id)}}" method= "GET">
+            <button class="button-editar" type="submit">Ver Treino</button>
+            </form>
+            
+            <form action="{{route('treino.destroy', $treino->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="button-excluir" type="submit"> Excluir </button>
+            </form>
+            </div> 
+            </div>
             @endforeach
-        </tbody>
-    </table>
+            </div>
     
     {{-- <form action="{{route('aluno.create')}}" method= "GET">
-    <button> adicionar </button>
+    <button class="criar-treino"> Criar Treino </button>
     </form> --}}
-    <a href="{{route('treino.createFromAluno', $data)}}">Criar treino</a>
+    <form action="{{route('treino.createFromAluno', $data)}}" method= "GET">
+    <button class="criar-treino"> Criar Treino </button>
+    </form>
 </x-layout>
-

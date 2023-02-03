@@ -40,7 +40,7 @@ class TreinoController extends Controller
 
     public function destroy(Treino $treino){
 
-        $aluno_id = $treino->id_aluno;
+        $aluno_id = $treino->aluno_id;
         $exercicios = Exercicio::all()->where('treino_id', '=', $treino->id);
         Exercicio::destroy($exercicios);
         $treino->delete();

@@ -6,6 +6,7 @@ use App\Models\Alunos;
 use App\Models\Endereco;
 use App\Models\User;
 use App\Models\Treino;
+use App\Models\Exercicio;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -73,6 +74,14 @@ class AlunosController extends Controller
 
     public function destroy(Alunos $aluno){
         $user_id = $aluno->user_id;
+        $treinos = Treino::all()->where('aluno_id', '=', $aluno->id);
+        
+        foreach($treinos as $treino){
+            $exercicios = Exercicio::all()->where('treino_id', '=', $treino->id);
+            Exercicio::destroy($exercicios);
+        }
+
+        Treino::destroy($treinos);
         User::destroy($user_id);
         $aluno->delete();
         return to_route('alunos.index');
@@ -105,13 +114,14 @@ class AlunosController extends Controller
         $aluno->save();        
 
         return to_route('alunos.index');
+        
     }
 
     public function listTreinoFromUser(){
         $logged_user = Auth::user();
 
         $aluno = Alunos::where('user_id', '=', $logged_user->id)->first();
-        $treinos = Treino::all()->where('id_aluno', '=', $aluno->id);
+        $treinos = Treino::all()->where('aluno_id', '=', $aluno->id);
 
         return view('alunos.treino')
         ->with('treinos', $treinos)

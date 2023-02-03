@@ -14,7 +14,6 @@ class TipoExercicio extends Model
     protected $fillable = [
         'name',
         'description',
-        'gif_link',   
         'id_equipamento'     
     ];
 
