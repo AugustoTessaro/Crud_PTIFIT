@@ -27,7 +27,7 @@
             <label for="description"> Descrição </label> <br>
             <input type="text" value="{{$treino->description}}" name="description" id="description"> <br>
             
-            <input type="hidden" value="{{$treino->id_aluno}}" name="id_aluno" id="id_aluno"> <br>
+            <input type="hidden" value="{{$treino->aluno_id}}" name="aluno_id" id="aluno_id"> <br>
  
             <button class="button-cadastrar" type="submit"> Atualizar </button>
     </form>

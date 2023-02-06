@@ -21,7 +21,7 @@
             <p>{{$exercicio->tipo_exercicio->name}}</p>
             <p>Repetições: {{$exercicio->repetitions}}</p>
             <p>Séries: {{$exercicio->sets}}</p>
-            <p>Peso: {{$exercicio->weight}}</p>
+            <p>Peso: {{$exercicio->weight}} Kg</p>
     
                 @if($user->role != 'aluno')
                     <form action="{{route('exercicio.edit', $exercicio->id)}}" method="GET">

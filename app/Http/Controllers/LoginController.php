@@ -17,8 +17,8 @@ class LoginController extends Controller
     public function login(Request $request)
     {
 
-        $request->validate(
-            [
+
+            $validator = Validator::make($request->all(),  [
                 'email' =>  'required|email' ,
                 'password' => 'required'
             ],
@@ -26,18 +26,25 @@ class LoginController extends Controller
                 'email.required'  => 'Digite seu email',
                 'email.email'  => 'Digite um email válido',
                 'password.required' => 'Digite sua senha' 
-            ]
-        );
+            ]);
+           
+      
+        if($validator->fails())
+        {
+            return redirect()->to('login')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $credentials = [
             'email' => $request->email,
             'password' => $request->password
         ];
 
-        if(!Auth::validate($credentials)):
-            return redirect()->to('login')
-            ->withErrors(trans('auth.failed'));
-        endif;
+        if(!Auth::attempt($credentials)){
+
+            return redirect()->to('login')->withErrors(['message' => 'Credenciais inválidas']);
+          }
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
@@ -48,6 +55,4 @@ class LoginController extends Controller
         endif;
         return redirect()->to('alunos');
     }
-
-
 }

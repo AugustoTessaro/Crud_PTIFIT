@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('equipamento', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("image_link");
             $table->string("description");
             $table->timestamps();
         });

@@ -17,10 +17,7 @@
         <input type="text" name="name" id="name" required><br>
 
         <label for="description"> Descrição </label><br>
-        <input type="text" name="description" id="description" required><br>       
-
-        <label for="image_link"> Link da imagem </label><br>
-        <input type="text" name="image_link" id="image_link"><br>        
+        <input type="text" name="description" id="description" required><br>        
 
         <br>
         <button class="button-cadastrar" type="submit"> Cadastrar </button>

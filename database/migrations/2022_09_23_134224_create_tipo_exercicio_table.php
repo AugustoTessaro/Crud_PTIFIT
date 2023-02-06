@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('tipo_exercicio', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("description");
-            $table->string("gif_link");            
+            $table->string("description");         
             $table->foreignId("id_equipamento")->references("id")->on("equipamento");
 
             $table->timestamps();

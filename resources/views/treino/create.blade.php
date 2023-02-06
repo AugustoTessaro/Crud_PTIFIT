@@ -25,7 +25,7 @@
             <label for="description"> Descrição </label> <br>
             <input type="text" name="description" id="description" required> <br>
             
-            <input type="hidden" value="{{$aluno->id}}" name="id_aluno" id="id_aluno">
+            <input type="hidden" value="{{$aluno->id}}" name="aluno_id" id="aluno_id">
             <br>
             <button class="button-cadastrar" type="submit"> Cadastrar </button>
        

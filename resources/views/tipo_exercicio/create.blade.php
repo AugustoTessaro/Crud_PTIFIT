@@ -17,10 +17,7 @@
         <input type="text" name="name" id="name" required><br>
 
         <label for="description"> Descrição </label><br>
-        <input type="text" name="description" id="description" required><br>
-
-        <label for="gif_link"> Link do Gif </label><br>
-        <input type="text" name="gif_link" id="gif_link"> <br>       
+        <input type="text" name="description" id="description" required><br>     
 
         <label for="id_equipamento"> Equipamento </label><br>
         <select name="id_equipamento" id="id_equipamento" required><br>

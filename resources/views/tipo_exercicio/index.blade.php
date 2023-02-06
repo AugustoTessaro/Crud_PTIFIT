@@ -13,10 +13,10 @@
             <div class="card-group">
             @foreach ($tipos_exercicio as $tipo_exercicio)
              <div class="card">     
-            <p>{{$tipo_exercicio->name}}</p>
-            <p>{{$tipo_exercicio->description}}</p>
+            <p> Exercício: {{$tipo_exercicio->name}}</p>
+            <p> Descrição: {{$tipo_exercicio->description}}</p>
                 
-            <p>{{$tipo_exercicio->equipamento->name}}</p>
+            <p> Nome do equipamento: {{$tipo_exercicio->equipamento->name}}</p>
             
                     <form action="{{route('tipo_exercicio.edit', $tipo_exercicio->id)}}" method="GET">
                         @csrf
