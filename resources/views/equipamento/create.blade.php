@@ -4,23 +4,44 @@
 <x-layout title="Cadastrar" :user="$user">
 
 <head>
-<link rel="stylesheet" type="text/css" href="{{URL::asset('css/equipamentos/create.css')}}">
+    <!-- <link rel="stylesheet" type="text/css" href="{{URL::asset('css/equipamentos/create.css')}}"> -->
 </head>
 
-<h2>Adicionar Equipamento</h2>
-<hr>
+<body class="body-custom" style="background-color: #f8f9fa;">
 
-    <div class="card">
-    <form action="{{route('equipamento.store')}}" method="POST">
-        @csrf
-        <label for="name"> Nome </label><br>
-        <input type="text" name="name" id="name" required><br>
+    <div class="container-md">
+        <div class="row ml-2">
+            <div class="d-flex flex-row justify-content-between">
+                <div class="display-6 ">Cadastrar Equipamento</div> 
+            </div>
+        </div>
 
-        <label for="description"> Descrição </label><br>
-        <input type="text" name="description" id="description" required><br>        
+        <hr class="col-xs-12" style="margin-bottom: 2rem;">
+        <div class="row gap-3 justify-content-evenly">
 
-        <br>
-        <button class="button-cadastrar" type="submit"> Cadastrar </button>
-    </form>
-</div>
+    <div class="col-md-5 col-12">
+        <div class="card p-4" style="background-color: #e9ecef">
+        <form action="{{route('equipamento.store')}}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label class="form-label" for="name"> Nome </label>
+                <input class="form-control" type="text" name="name" id="name" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="description"> Descrição </label>
+                <input class="form-control" type="text" name="description" id="description" required>       
+            </div>
+
+            <div class="d-flex flex-row justify-content-end" style="margin-bottom: -1rem;">
+                <div>
+                    <button class="btn btn-outline-success" type="submit"> Cadastrar </button>
+                </div>
+            </div>
+        
+        </form>
+        </div>
+    </div>
+    </div>
+
 </x-layout>
