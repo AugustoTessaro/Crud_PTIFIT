@@ -9,10 +9,10 @@
 
 <body class="body-custom" style="background-color: #f8f9fa;">
 
-    <div class="container-md">
+    <div >
         <div class="row ml-2">
             <div class="d-flex flex-row justify-content-between">
-                <div class="display-6 ">Cadastrar Treino</div> 
+                <div class="display-6 ms-3">Editar Treino</div> 
             </div>
         </div>
 
@@ -20,7 +20,7 @@
         <div class="row gap-3 justify-content-evenly">
 
     <div class="col-md-5 col-12">
-        <div class="card p-4" style="background-color: #e9ecef"">
+        <div class="card p-4" style="background-color: #e9ecef">
             <form action="{{route('treino.update', $treino->id)}}" method="POST">
                 @csrf
                 @method('PUT')

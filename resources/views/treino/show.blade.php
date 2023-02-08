@@ -36,7 +36,7 @@
                                     {{$exercicio->tipo_exercicio->name}}</div>
 
                                 <div class="card-title h5" style="margin-left: 1.4rem">
-                                    {{$exercicio->tipo_exercicio->equipamento->description}}</div>
+                                    {{$exercicio->tipo_exercicio->description}}</div>
 
                                 <div class="card-title h5" style="margin-left: 1.4rem">Equipamento:
                                     {{$exercicio->tipo_exercicio->equipamento->name}}</div>
@@ -53,10 +53,11 @@
                                     <div class="row">
                                         <div class="col">Peso: {{$exercicio->weight}} Kg</div>
                                     </div>
+                                    @if($user->role == 'aluno')
                                     <br>
-                                    <div class="row">
-                                        <p>Exercício feito: <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></p>
-                                    </div>
+                                    <input type="checkbox" class="btn-check" id="{{$exercicio->id}}">
+                                    <label class="btn btn-outline-success" for="{{$exercicio->id}}">&#10004;</label>
+                                    @endif
                                 </div>
                             </div>
 

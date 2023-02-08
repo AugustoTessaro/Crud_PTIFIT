@@ -9,17 +9,17 @@
 
 <body class="body-custom" style="background-color: #f8f9fa;">
 
-    <div class="container-md">
+    <div>
         <div class="row ml-2">
             <div class="d-flex flex-row justify-content-between">
-                <div class="display-6 ">Cadastrar Tipo de Exercício</div> 
+                <div class="display-6 ms-3">Cadastrar Tipo de Exercício</div> 
             </div>
         </div>
 
         <hr class="col-xs-12" style="margin-bottom: 2rem;">
         <div class="row gap-3 justify-content-evenly">
 
-    <div class="col-md-5 col-12">
+    <div class="col-md-3 col-12">
         <div class="card p-4" style="background-color: #e9ecef"">
             <form action="{{route('tipo_exercicio.store')}}" method="POST">
                 @csrf   

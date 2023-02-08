@@ -12,6 +12,8 @@
 </head>
 
 <body>
+  
+
   <nav class="navbar navbar-light navbar-expand-md" style="background-color: #e9ecef">
     <div class="container-fluid" >
       <a class="navbar-brand" href="#">
@@ -55,7 +57,7 @@
 
           <li class="nav-item">
             <a class="nav-link" href="{{route('tipo_exercicio.index')}}"> 
-              EXERCICIOS
+              TIPO DE EXERCÍCIOS
             </a>
           </li>
 
